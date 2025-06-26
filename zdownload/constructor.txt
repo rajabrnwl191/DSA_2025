@@ -1,0 +1,727 @@
+1) (i)Program using parameterize constructor using default value 
+
+#include <iostream>
+
+using namespace std;
+
+class Rectangle
+{
+    private:
+        int length;  // To avoid mishandling 
+        int breadth;
+    public:
+        Rectangle(int l=0,int b=0)  // parameterise constructor with default value
+        {
+            setLength(l);      //we can also write the value in constructor 
+            setBreadth(b);
+        }
+        void setLength(int l)   // mutator (for writing the value) as well as checking the data is appropriate
+        {
+            if (l>=0)
+            {
+                length=l;
+            }
+            else 
+            {
+                cout<<"length is not correct";
+                length=0;
+            }
+        }
+        void setBreadth(int b)  // mutator( for writing the value) as well as checking the data is appropriate
+        {
+            if (b>=0)
+            {
+                breadth=b;
+            }
+            else 
+            {
+                cout<<"breadth is not correct";
+                breadth =0;
+            }
+        }
+        int getLength()  // accessor ( for getting the data)
+        {
+            return length;
+        }
+        int getBreadth()  // accessor ( for getting the data)
+        {
+            return breadth;
+        }
+        int area()  //area function 
+        {
+            return length*breadth;
+        }
+};
+int main()
+{
+    Rectangle r(5,4);
+    cout<<r.area()<<endl;
+    
+    return 0;
+    
+}
+(ii)we can also wite the value in constructor but for checking
+#include <iostream>
+
+using namespace std;
+
+class Rectangle
+{
+    private:
+        int length;  // To avoid mishandling 
+        int breadth;
+    public:
+        Rectangle(int l=0,int b=0)  // parameterise constructor with default value
+        {
+            length=l;
+            breadth=b;
+        }
+        int getLength()  // accessor ( for getting the data)
+        {
+            return length;
+        }
+        int getBreadth()  // accessor ( for getting the data)
+        {
+            return breadth;
+        }
+        int area()  //area function 
+        {
+            return length*breadth;
+        }
+};
+int main()
+{
+    Rectangle r(5,4);
+    cout<<r.getLength()<<endl;
+    cout<<r.getBreadth()<<endl;
+    cout<<r.area()<<endl;
+    
+    return 0;
+    
+}
+
+1)(iii)program using copy constructor 
+#include <iostream>
+
+using namespace std;
+
+class Rectangle
+{
+    private:
+        int length;  // To avoid mishandling 
+        int breadth;
+    public:
+        Rectangle(int l=0,int b=0)  // parameterise constructor with default value
+        {
+            setLength(l);
+            setBreadth(b);
+        }
+        Rectangle(Rectangle &r)
+        {
+            length=r.length;
+            breadth=r.breadth;
+        }
+        void setLength(int l)   // mutator (for writing the value) as well as checking the data is appropriate
+        {
+            if (l>=0)
+            {
+                length=l;
+            }
+            else 
+            {
+                cout<<"length is not correct";
+                length=0;
+            }
+        }
+        void setBreadth(int b)  // mutator( for writing the value) as well as checking the data is appropriate
+        {
+            if (b>=0)
+            {
+                breadth=b;
+            }
+            else 
+            {
+                cout<<"breadth is not correct";
+                breadth =0;
+            }
+        }
+        int getLength()  // accessor ( for getting the data)
+        {
+            return length;
+        }
+        int getBreadth()  // accessor ( for getting the data)
+        {
+            return breadth;
+        }
+        int area()  //area function 
+        {
+            return length*breadth;
+        }
+};
+int main()
+{
+    Rectangle r(5,4);
+    Rectangle r2(r);
+    cout<<r2.area()<<endl;
+    
+    return 0;
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2)Program using scope resolution function is defined ouside the class
+
+#include <iostream>
+
+using namespace std;
+
+class Rectangle
+{
+    private:
+        int length;
+        int breadth;
+    public:
+        Rectangle();
+        Rectangle(int l, int b);
+        Rectangle(Rectangle &r);
+        int getLength(){return length;}
+        int getBreadth(){return breadth;}
+        void setLength(int l);
+        void setBreadth(int b);
+        int area();
+        int perimeter();
+        bool issquare();
+        ~Rectangle();
+};
+int main()
+{
+  Rectangle r(10,10);
+  cout<<"length is "<<r.getLength()<<endl;
+  cout<<"breadth is "<<r.getBreadth()<<endl;
+  cout<<"area " <<r.area()<<endl;
+  cout<<"perimeter is "<<r.perimeter()<<endl;
+  if (r.issquare())
+    cout<<"yes It is a square"<<endl;
+  
+    
+}
+
+Rectangle::Rectangle()
+{
+    length=0;
+    breadth=0;
+}
+Rectangle::Rectangle(int l, int b)
+{
+    setLength(l);
+    setBreadth(b);
+}
+Rectangle::Rectangle(Rectangle &r)
+{
+    length=r.length;
+    breadth=r.breadth;
+    
+}
+void Rectangle::setLength(int l)
+{
+    if (l>=0)
+    {
+        length=l;
+    }
+    else 
+    {
+        cout<<"length is not correct";
+        length=0;
+    }
+}
+void Rectangle::setBreadth(int b)
+{
+    if (b>=0)
+    {
+        breadth=b;
+    }
+    else 
+    {
+        cout<<"breadth is not correct";
+        breadth=0;
+    }
+}    
+int Rectangle::area()
+{
+    return length*breadth;
+}
+int Rectangle::perimeter()
+{
+    return 2*(length+breadth);
+}
+bool Rectangle::issquare()
+{
+    return (length==breadth);
+}
+
+Rectangle::~Rectangle()
+{
+    cout<<"rectangle destroyed";
+}
+
+
+
+
+
+
+
+
+
+
+3) (i)Inheritance(inline function)
+#include <iostream>
+
+using namespace std;
+
+class Rectangle
+{
+  private:
+    int length;
+    int breadth;
+  public:
+    Rectangle(int l=0,int b=0)
+    {
+        void setLength(int l);
+        void setBreadth(int b);
+    }
+    void setLength(int l)
+    {
+        if (l>=0)
+        {
+            length=l;
+        }
+        else 
+        {
+            cout<<"length is not correct";
+            length=0;
+        }
+    }
+    void setBreadth(int b)
+    {
+        if (b>=0)
+        {
+            breadth=b;
+        }
+        else 
+        {
+            cout<<"breadth is not correct";
+            breadth=0;
+        }
+    }
+    int getLength()
+    {
+        return length;
+    }
+    int getBreadth()
+    {
+        return breadth;
+    }
+    int area()
+    {
+        return length*breadth;
+    }
+};
+class cuboid:public Rectangle
+{
+private:
+    int height;
+public:
+    cuboid(int h=0)
+    {
+        height=h;
+    }
+    int getHeight()
+    {
+        return height;
+    }
+    int volume()
+    {
+        return getLength()*getBreadth()*getHeight();
+    }
+};
+
+int main()
+{
+    cuboid c(5);
+    c.setLength(5);
+    c.setBreadth(4);
+    cout<<c.getHeight()<<endl;
+    cout<<c.getLength()<<endl;
+    cout<<c.getBreadth()<<endl;
+    cout<<"volume is "<<c.volume();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3)(ii) Inheritance using scope resolution for parent class function
+
+#include <iostream>
+
+using namespace std;
+
+class Rectangle
+{
+  private:
+    int length;
+    int breadth;
+  public:
+    Rectangle(int l=0,int b=0);
+    void setLength(int l);
+    void setBreadth(int b);
+    int getLength() {return length;}
+    int getBreadth(){ return breadth;}
+    int area(){return length*breadth; }
+};
+class cuboid:public Rectangle
+{
+private:
+    int height;
+public:
+    cuboid(int h=0)
+    {
+        height=h;
+    }
+    int getHeight()
+    {
+        return height;
+    }
+    int volume()
+    {
+        return getLength()*getBreadth()*getHeight();
+    }
+};
+
+int main()
+{
+    cuboid c(7);
+    c.setLength(5);
+    c.setBreadth(4);
+    cout<<c.getHeight()<<endl;
+    cout<<c.getLength()<<endl;
+    cout<<c.getBreadth()<<endl;
+    cout<<"volume is "<<c.volume();
+}
+Rectangle::Rectangle(int l,int b)
+{
+    setLength(l);
+    setBreadth(b);
+}
+void Rectangle::setLength(int l)
+    {
+        if (l>=0)
+        {
+            length=l;
+        }
+        else 
+        {
+            cout<<"length is not correct";
+            length=0;
+        }
+    }
+void Rectangle::setBreadth(int b)
+    {
+        if (b>=0)
+        {
+            breadth=b;
+        }
+        else 
+        {
+            cout<<"breadth is not correct";
+            breadth=0;
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3)(iii)Inheritance using scope resolution for all class
+
+#include <iostream>
+
+using namespace std;
+
+class Rectangle
+{
+  private:
+    int length;
+    int breadth;
+  public:
+    Rectangle(int l=0,int b=0);
+    void setLength(int l);
+    void setBreadth(int b);
+    int getLength() {return length;}
+    int getBreadth(){ return breadth;}
+    int area(){return length*breadth; }
+};
+class cuboid:public Rectangle
+{
+private:
+    int height;
+public:
+    cuboid (int h=0);
+    void setHeight(int h);
+    
+    int getHeight()
+    {
+        return height;
+    }
+    int volume()
+    {
+        return getLength()*getBreadth()*getHeight();
+    }
+};
+
+int main()
+{
+    cuboid c(7);
+    c.setLength(5);
+    c.setBreadth(4);
+    cout<<c.getHeight()<<endl;
+    cout<<c.getLength()<<endl;
+    cout<<c.getBreadth()<<endl;
+    cout<<"volume is "<<c.volume();
+}
+Rectangle::Rectangle(int l,int b)
+{
+    setLength(l);
+    setBreadth(b);
+}
+void Rectangle::setLength(int l)
+    {
+        if (l>=0)
+        {
+            length=l;
+        }
+        else 
+        {
+            cout<<"length is not correct";
+            length=0;
+        }
+    }
+void Rectangle::setBreadth(int b)
+    {
+        if (b>=0)
+        {
+            breadth=b;
+        }
+        else 
+        {
+            cout<<"breadth is not correct";
+            breadth=0;
+        }
+    }
+cuboid::cuboid(int h)
+    {
+        setHeight(h);
+    }
+void cuboid::setHeight(int h)
+    {
+        if (h>=0)
+        {
+        height=h;
+        }
+        else
+        {
+            cout<<"height is not correct"<<endl;    
+            height=0;
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+4)(i)Exception handling
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int x=10,y=5,z;
+    try
+    {
+        if (y==0)
+            throw 101;
+        z=x/y;
+        cout<<z<<endl;
+         cout<<"calculation is done"<<endl;
+    }
+    catch(int e)
+    {
+    cout<<"ERROR "<<e<<endl;
+    }
+   
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4)(ii)Exception handling using constructor
+#include <iostream>
+
+using namespace std;
+int division (int a, int b)
+{
+    if(b==0)
+        throw 101;
+    return a/b;
+}
+int main()
+{
+    int x=10,y=0,z;
+    try
+    {
+       
+        z=division(x,y);
+        cout<<z<<endl;
+        cout<<"calculation is done"<<endl;
+    }
+    catch(int e)
+    {
+    cout<<"ERROR "<<e<<endl;
+    }
+   
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4)Exception handling
+
+

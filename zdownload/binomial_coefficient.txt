@@ -1,0 +1,132 @@
+//find the value of nCr
+
+#include <iostream>
+
+using namespace std;
+
+int fac(int n)
+{
+    if(n==0){
+    return 1;
+    }
+    int factorial=1;
+    for(int i=1;i<=n;i++)
+    {
+        factorial=factorial*i;
+    }
+    
+    return factorial;
+    
+    
+}
+
+int main()
+{
+    int r,n;
+    cout<<"enter n and r";
+    cin>>n>>r;
+    int coef=(fac(n))/(fac(r)*fac(n-r));
+    cout<<coef;
+
+    return 0;
+}
+// all the binomial coefficient
+
+#include <iostream>
+
+using namespace std;
+int fact(int t)
+{
+    int factorial=1;
+    for(int i=1;i<=t;i++)
+    {
+        factorial=factorial*i;
+    }
+    return factorial;
+}
+
+void binomialcoefficient(int n)
+{
+    int coef;
+    for(int r=0;r<=n;r++)
+    {
+        if(r==0)
+        cout<<"1, ";
+        else
+        {
+        coef=(fact(n))/(fact(r)*fact(n-r));;
+        cout<<coef<<", ";
+        }
+    }
+}
+int main()
+{
+    int n;
+    cout<<"enter the number ";
+    cin>>n;
+    binomialcoefficient(n);
+
+    return 0;
+}
+
+//Pythagorean triplet
+#include <iostream>
+
+using namespace std;
+bool check( int x,int y,int z)
+{
+    int a,b,c;
+    a=(x>y && x>z)?x:(y>z?y:z);
+    if(a==x)
+    {
+        b=y;
+        c=z;
+    }
+    else if(a==y)
+    {
+        b=y;
+        c=z;
+        
+    }
+    else 
+    {
+        b=x;
+        c=y;
+    }
+    if((a*a)==(b*b)+(c*c))
+    return 1;
+    else return 0;
+    
+}
+
+int main()
+{
+    int x,y,z;
+    cout<<"enter x, y, z : ";
+    cin>>x>>y>>z;
+    if(check(x,y,z))
+    {
+        cout<<"pythagorean triplet";
+    }
+    else 
+    cout<<"not a pythagorean triplet";
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
